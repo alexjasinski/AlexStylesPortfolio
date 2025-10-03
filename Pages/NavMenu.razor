@@ -1,0 +1,22 @@
+<nav class="navbar">
+    <a class="navbar-brand" href="/">Alex Styles</a>
+
+    <div class="burger" @onclick="ToggleMenu">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <ul class="nav-menu @(isMenuOpen ? "active" : "")">
+        <li><NavLink href="/" title="Go to Home">Home</NavLink></li>
+        <li><NavLink href="/about" title="Learn about me">About</NavLink></li>
+        <li><NavLink href="/portfolio" title="See my portfolio">Portfolio</NavLink></li>
+        <li><NavLink href="/contact" title="Get in touch">Contact</NavLink></li>
+    </ul>
+</nav>
+
+@code {
+    private bool isMenuOpen = false;
+
+    private void ToggleMenu() => isMenuOpen = !isMenuOpen;
+}

@@ -1,0 +1,13 @@
+﻿@using AlexStylesPortfolio.Pages
+
+<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+    </Found>
+<NotFound>
+    <LayoutView Layout="@typeof(MainLayout)">
+        <p>Sorry, the page you requested was not found.</p>
+    </LayoutView>
+</NotFound>
+
+</Router>

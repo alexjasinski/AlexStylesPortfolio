@@ -1,0 +1,41 @@
+@page "/portfolio"
+
+<section class="portfolio-section">
+    <h2>My Portfolio</h2>
+
+    <div class="portfolio">
+        @foreach (var project in Projects)
+        {
+            <div class="portfolio-item" @onclick="() => ShowModal(project)">
+                <h3>@project.Title</h3>
+                <p>@project.Summary</p>
+            </div>
+        }
+    </div>
+
+    <Modal IsVisible="@IsModalVisible" IsVisibleChanged="@((v) => IsModalVisible = v)">
+        <h2>@SelectedProject?.Title</h2>
+        <p>@SelectedProject?.Description</p>
+    </Modal>
+</section>
+
+@code {
+    private bool IsModalVisible { get; set; }
+    private Project? SelectedProject { get; set; }
+
+    private List<Project> Projects = new()
+    {
+        new Project("Project 1", "Summary for project 1", "Detailed description for project 1"),
+        new Project("Project 2", "Summary for project 2", "Detailed description for project 2"),
+        new Project("Project 3", "Summary for project 3", "Detailed description for project 3"),
+        new Project("Project 4", "Summary for project 4", "Detailed description for project 4")
+    };
+
+    private void ShowModal(Project project)
+    {
+        SelectedProject = project;
+        IsModalVisible = true;
+    }
+
+    public record Project(string Title, string Summary, string Description);
+}
